@@ -1,0 +1,123 @@
+--switch
+--comments
+--operators
+--increment&decrement
+--loop-break-continue
+--Array
+--foreach
+--AssocArray
+--multiArray
+--bassByValue
+--function
+--scope
+--const
+--get&post
+--cookie
+--session
+--server& validate
+--files
+--request
+--BuiltInFunctions
+--validates
+--TypeofError
+--include&require
+--echo-print  single-doublequate
+--files
+
+
+--files
+--request
+--BuiltInFunctions
+{
+
+
+/** array
+ * chunk()
+ * array_diff()
+ * array_comping()
+ * array_count_value()
+ * array_diff_assoc()
+ * array_fill
+ * array_key_exist()
+ * array_push()
+ * array_unshift()
+ * array_pop()
+ * array_shift()
+ * array_reverse()
+ * slice()
+ * array_unique()
+ * asort()
+ * ksort()
+ * slice()
+ * splice()
+ * slice()
+ * extract()
+ * shuffle()
+ * in_array()
+ * 
+ * 
+ * string
+ * 
+ * chunk_split()
+ * echo()
+ * explode()
+ * implode()
+ * print_if()
+ * join()
+ * lefirst()
+ * ltrim()
+ * md5
+ * nl2br
+ * shal1()
+ * substr()
+ * math()
+ * ceil()
+ * floor()
+ * max()
+ * min()
+ * 
+ * 
+ */
+
+
+}
+
+--validates
+
+--TypeofErrors
+{/** types of error
+ * warning
+ * fatal error
+ * syntax error
+ * notice
+ * deprecated error
+ * 
+ */}
+
+--include&require
+
+--echo-print  single-doublequate
+
+--files
+  { readfile('t.text')
+      r/w/a
+    $file= fopen('t.text','r')
+     echo fread($file,200)  fread($file,filesize('t.text'))
+      fclose($file)
+
+
+   $file= fopen('t.text','w')
+     echo fwrite($file,"welcome ahmed mohamed") 
+      fclose($file)
+
+ $file= fopen('t.text','a')
+     echo fwrite($file,"welcome ahmed mohamed") 
+      fclose($file)
+
+$file= fopen('t.text','r') resource
+     echo fgets($file) 
+      fclose($file)
+      
+while($line as fgets($file)){
+echo $line;
+}

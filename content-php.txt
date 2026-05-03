@@ -121,3 +121,253 @@ $file= fopen('t.text','r') resource
 while($line as fgets($file)){
 echo $line;
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+database
+1-relational db
+no sql db
+
+ERD
+
+CREATE BATABASE NTI
+DEOP DATABASE NTI
+ CMD 
+   mysql -u root
+         CREATE BATABASE NTI;
+
+
+
+
+CREATE TABLE cutomers (
+    id INT AUTO_INCREMENT PRIMARY KEY ,
+    name varchar(100) NOT NULL ,
+    email varchar(50) UNIQUE ,
+    birdth_date DATE,
+    gender ENUM('male','femail') DEFAULT 'male' ,
+    INDEX id_name_email(name,email)
+    
+    
+    
+    );
+
+
+
+INSERT INTO users(name,email ,password , gender ,birth_date)
+VALUES ('malik','malik@gmail.com','1123','male','2022-7-13');
+
+
+
+
+
+INSERT INTO users(name,email ,password , gender ,birth_date)
+VALUES ('malik','malik@gmail.com','1123','male','2022-7-13'),
+('malik','malik@gmail.com','1123','male','2022-7-13'),
+('malik','malik@gmail.com','1123','male','2022-7-13'),
+('malik','malik@gmail.com','1123','male','2022-7-13')
+
+
+
+UPDATE users SET name = "zain" WHERE id = 1
+
+UPDATE users SET name = "mohamed" , gender = "male" WHERE id = 1;
+
+
+
+DELETE FROM users WHERE id=2;
+
+
+SELECT * FROM `customers`;
+
+
+SELECT first_name , last_name FROM `customers` WHERE 1;
+
+
+
+SELECT first_name as firstName , last_name FROM `customers` WHERE 1;
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+SELECT * FROM `customers` WHERE 1
+
+(> ,< , )
+
+SELECT * FROM `customers` WHERE id >500
+
+
+SELECT * FROM `customers` WHERE first_name ="Eleonora"
+
+
+SELECT * FROM `customers` WHERE country = "China";
+
+SELECT first_name FROM `customers` WHERE country = "China";
+
+
+                          (AND  && OR)
+
+SELECT first_name FROM `customers` WHERE country = "China" AND city ="Jiabei" OR city =" ";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                       (BETWEEN && IN)
+
+SELECT * FROM `customers` WHERE id = 200 OR id = 250 or id = 300;
+
+SELECT * FROM `customers` WHERE id IN (200,250,300);
+
+
+SELECT * FROM `customers` WHERE id > 250 AND id <500;
+
+
+SELECT * FROM `customers` WHERE id BETWEEN 250 AND 500;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+                     lIKE => (% ,_)
+
+SELECT * FROM `customers` WHERE first_name =  "zain";
+SELECT * FROM `customers` WHERE first_name =  "joh";
+
+
+SELECT * FROM `customers` WHERE first_name LIKE "jo%";
+
+SELECT * FROM `customers` WHERE first_name LIKE "jo_";
+
+SELECT * FROM `customers` WHERE first_name LIKE "jo__";
+
+SELECT * FROM `customers` WHERE first_name LIKE "_jo__";
+
+SELECT * FROM `customers` WHERE first_name LIKE "%j";
+
+SELECT * FROM `customers` WHERE first_name LIKE "%a%";
+
+SELECT * FROM `customers` WHERE first_name LIKE "%j%";
+
+////////////////////////////////////////////////////
+
+                       (AND , OR , NOT)
+
+SELECT * FROM `customers` WHERE id NOT BETWEEN 10 AND 60;
+
+
+///////////////////////////////////////////////////////////////////
+                         DISTINCT 
+                  
+SELECT * FROM `customers` WHERE country = "syria";
+SELECT DISTINCT country FROM `customers` WHERE country = "syria";
+SELECT DISTINCT first_name FROM `customers`
+SELECT DISTINCT first_name FROM `customers` WHERE country = "syria";
+SELECT DISTINCT first_name ,last_name FROM `customers`;
+
+////////////////////////////////////////////////////////////////////////
+
+
+                  ORDER BY
+
+SELECT * FROM customers ORDER BY id;
+SELECT * FROM customers ORDER BY id ASC;
+SELECT * FROM customers ORDER BY id DESC;
+SELECT * FROM customers ORDER BY COUNTRY DESC;
+
+SELECT first_name , money FROM customers ORDER BY first_name ASC , money DESC;
+SELECT first_name , money FROM customers ORDER BY first_name , money ASC;
+
+SELECT first_name , money FROM customers ORDER BY first_name , money ASC WHERE id > 5;       error
+
+SELECT first_name , money FROM customers WHERE id > 5 ORDER BY first_name , money ASC ;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ 
+                           Pagination  => limit offset
+
+SELECT * FROM customers LIMIT 10;
+SELECT * FROM customers LIMIT 10 OFFSET 0;
+SELECT * FROM customers LIMIT 20 OFFSET 10;
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+                        Argument function
+
+min()      SELECT MIN(money) FROM customers;      with number 
+
+max()      SELECT MAX(money) FROM customers;    with number 
+
+count()   SELECT COUNT(*) FROM customers;   number of data  
+          SELECT COUNT(*) as data_number FROM customers;
+          SELECT COUNT(id) as data_number FROM customers;
+
+sum()     SELECT SUM(id) FROM customers;   number of data  
+avg()     SELECT AVG(id) FROM customers;
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+                           Group by
+
+SELECT COUNT(*) FROM customers WHERE country = "China";
+SELECT COUNT(*) as COUNT , country FROM customers WHERE country = "China";
+
+SELECT COUNT(*) as COUNT , country FROM customers GROUP BY country;
+
+SELECT COUNT(*) AS count_num , country FROM customers GROUP BY country ORDER BY count_num;
+
+SELECT COUNT(*) as COUNT , country FROM customers WHERE country ="Afghanistan";
+
+SELECT SUM(money) as total , money,country FROM customers GROUP BY country;
+ 
+
+
+ ////////////////////////////////////////////////////////////////////////////              
+
+
+                            HAVING
+
+SELECT COUNT(*) ,country FROM customers GROUP BY country;
+
+SELECT COUNT(*) as count ,country FROM customers GROUP BY country HAVING count >5;
+ 
+                        where with having
+SELECT COUNT(*) as count ,country FROM customers WHERE money >1000 GROUP BY country HAVING count >5;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+                             relationship
+
+                     --------one to one----------------
+
+
+CREATE TABLE nationalids(
+id int PRIMARY KEY AUTO_INCREMENT  ,
+   number_id int UNIQUE ,
+    user_id int UNIQUE ,
+    FOREIGN KEY(user_id)REFERENCES users(id)
+)
+
+
+
+
+                           --------one to many----------------
+
+
+CREATE TABLE departments(
+id int  PRIMARY KEY AUTO_INCREMENT,
+    name varchar(50)
+);
+
+
+CREATE TABLE employees (
+id int PRIMARY key AUTO_INCREMENT,
+name varchar(100),
+department_id int ,
+    FOREIGN KEY(department_id)REFERENCES departments(id)     
+);
+

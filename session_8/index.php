@@ -100,7 +100,7 @@ foreach($validates as $validate_name => $validate_value){
    
 $value = filter_input(INPUT_POST ,$validate_name , $validate_value['filter'] , $validate_value['my_option']) ;
 
-if(empty($validate_name )){
+if(empty($_POST[$validate_name] )){
    $errors[]  = "you must full ".$validate_name;
 }
 
